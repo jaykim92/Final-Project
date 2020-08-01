@@ -6,8 +6,8 @@ const userSchema = new Schema({
     password: {type: String, required: true},
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
-    longitude: {type: Number, required: true},
-    latitude: {type: Number, required: true}
+    latitude: {type: Number, required: true},
+    longitude: {type: Number, required: true}
 });
 
 const User = mongoose.model("User", userSchema);
