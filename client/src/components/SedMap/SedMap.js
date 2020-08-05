@@ -74,7 +74,7 @@ export default function App() {
       <h1>
         Anti-Social Social{" "}
         <div>
-          <img src="./DrakeCartoon.jpg" ></img>
+          {/* <img src="./DrakeCartoon.jpg" ></img> */}
           <span role="img" aria-label="tent">
             🧑🏻‍🤝‍🧑🏻🧑🏽‍🤝‍🧑🏽🧑🏻‍🤝‍🧑🏻🧑🏽‍🤝‍🧑🏽🧑🏾‍🤝‍🧑🏾
           </span>
