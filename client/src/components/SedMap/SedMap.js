@@ -5,6 +5,8 @@ import {
   Marker,
   InfoWindow
 } from "@react-google-maps/api";
+
+
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng
@@ -72,10 +74,12 @@ export default function App() {
       <h1>
         Anti-Social Social{" "}
         <div>
+          <img src="./DrakeCartoon.jpg" ></img>
           <span role="img" aria-label="tent">
             🧑🏻‍🤝‍🧑🏻🧑🏽‍🤝‍🧑🏽🧑🏻‍🤝‍🧑🏻🧑🏽‍🤝‍🧑🏽🧑🏾‍🤝‍🧑🏾
           </span>
         </div>
+        
         <div>
           <span role="img" aria-label="tent">
             🧑🏼‍🤝‍🧑🏼🧑🏻‍🤝‍🧑🏽🧑🏻‍🤝‍🧑👩‍👨‍👨‍🧑🏻‍🤝‍🧑🏻
@@ -84,7 +88,7 @@ export default function App() {
       </h1>
 
       <Locate panTo={panTo} />
-      <Search panTo={panTo} />
+      {/* <Search panTo={panTo} /> */}
 
       <GoogleMap
         id="map"
@@ -103,7 +107,7 @@ export default function App() {
               setSelected(marker);
             }}
             icon={{
-              url: `https://image.flaticon.com/icons/svg/2750/2750711.svg`,
+              src: `https://image.flaticon.com/icons/svg/2750/2750711.svg`,
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(15, 15),
               scaledSize: new window.google.maps.Size(30, 30)
@@ -141,71 +145,76 @@ function Locate({ panTo }) {
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            panTo({
+          //    var marker = new google.maps.Marker({
+          // position: {lat: lat, lng: lng},
+          // map: map)}  
+           panTo({
               lat: position.coords.latitude,
-              lng: position.coords.longitude
-            });
+              lng: position.coords.longitude,
+            })
+            ;
           },
           () => null
         );
       }}
     >
+   
       <img src="/compass.svg" alt="compass" />
     </button>
   );
 }
 
-function Search({ panTo }) {
-  const {
-    ready,
-    value,
-    suggestions: { status, data },
-    setValue,
-    clearSuggestions
-  } = usePlacesAutocomplete({
-    requestOptions: {
-      location: { lat: () => 43.6532, lng: () => -79.3832 },
-      radius: 100 * 1000
-    }
-  });
+// function Search({ panTo }) {
+//   const {
+//     ready,
+//     value,
+//     suggestions: { status, data },
+//     setValue,
+//     clearSuggestions
+//   } = usePlacesAutocomplete({
+//     requestOptions: {
+//       location: { lat: () => 43.6532, lng: () => -79.3832 },
+//       radius: 100 * 1000
+//     }
+//   });
 
-  // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
+//   // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
 
-  const handleInput = (e) => {
-    setValue(e.target.value);
-  };
+//   const handleInput = (e) => {
+//     setValue(e.target.value);
+//   };
 
-  const handleSelect = async (address) => {
-    setValue(address, false);
-    clearSuggestions();
+//   const handleSelect = async (address) => {
+//     setValue(address, false);
+//     clearSuggestions();
 
-    try {
-      const results = await getGeocode({ address });
-      const { lat, lng } = await getLatLng(results[0]);
-      panTo({ lat, lng });
-    } catch (error) {
-      console.log("😱 Error: ", error);
-    }
-  };
+//     try {
+//       const results = await getGeocode({ address });
+//       const { lat, lng } = await getLatLng(results[0]);
+//       panTo({ lat, lng });
+//     } catch (error) {
+//       console.log("😱 Error: ", error);
+//     }
+//   };
 
-  return (
-    <div className="search">
-      <Combobox onSelect={handleSelect}>
-        <ComboboxInput
-          value={value}
-          onChange={handleInput}
-          disabled={!ready}
-          placeholder="Search your location"
-        />
-        <ComboboxPopover>
-          <ComboboxList>
-            {status === "OK" &&
-              data.map(({ id, description }) => (
-                <ComboboxOption key={id} value={description} />
-              ))}
-          </ComboboxList>
-        </ComboboxPopover>
-      </Combobox>
-    </div>
-  );
-}
+//   return (
+//     <div className="search">
+//       <Combobox onSelect={handleSelect}>
+//         <ComboboxInput
+//           value={value}
+//           onChange={handleInput}
+//           disabled={!ready}
+//           placeholder="Search your location"
+//         />
+//         <ComboboxPopover>
+//           <ComboboxList>
+//             {status === "OK" &&
+//               data.map(({ id, description }) => (
+//                 <ComboboxOption key={id} value={description} />
+//               ))}
+//           </ComboboxList>
+//         </ComboboxPopover>
+//       </Combobox>
+//     </div>
+//   );
+// }
