@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
   GoogleMap,
   useLoadScript,
@@ -6,6 +6,7 @@ import {
   InfoWindow
 } from "@react-google-maps/api";
 
+import {useAppContext} from "../../utils/GlobalState";
 
 import usePlacesAutocomplete, {
   getGeocode,
@@ -42,8 +43,13 @@ export default function App() {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyBzMU8Sce5illSkT0uXrZgEN7rqAoW1hNI"
   });
+  const [state] = useAppContext();
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
+
+  useEffect(()=> {
+    if(state?.location) panTo(state.location) 
+  }, [state?.location])
 
   const onMapClick = React.useCallback((e) => {
     setMarkers((current) => [
@@ -86,9 +92,6 @@ export default function App() {
           </span>
         </div>
       </h1>
-
-      <Locate panTo={panTo} />
-      {/* <Search panTo={panTo} /> */}
 
       <GoogleMap
         id="map"
@@ -138,31 +141,7 @@ export default function App() {
   );
 }
 
-function Locate({ panTo }) {
-  return (
-    <button
-      className="locate"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-          //    var marker = new google.maps.Marker({
-          // position: {lat: lat, lng: lng},
-          // map: map)}  
-           panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            })
-            ;
-          },
-          () => null
-        );
-      }}
-    >
-   
-      <img src="/compass.svg" alt="compass" />
-    </button>
-  );
-}
+
 
 // function Search({ panTo }) {
 //   const {

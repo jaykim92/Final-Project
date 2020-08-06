@@ -1,5 +1,6 @@
 .navbar {
     background-color: #45a29e;
+    width: 100vw;
   }
   
   .navbar-inner {
@@ -18,7 +19,7 @@
     text-decoration: none;
     color: #ffffff;
     align-self: center;
-    font-size: 1.5rem;
+    font-size: 2.2rem;
     font-weight: bold;
   }
   
@@ -47,6 +48,7 @@
     text-decoration: none;
     color: #ffffff;
     font-size: 1.25rem;
+    cursor: pointer;
   }
   
   @media only screen and (min-width: 40rem) {

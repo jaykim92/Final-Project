@@ -1,39 +1,45 @@
 import React from 'react';
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import {FIND_LOCATION} from '../../utils/actions'
 import "./styles.css";
+import {useAppContext} from '../../utils/GlobalState'
 
 
 function Navbar() {
+    const [state, dispatch] = useAppContext()
+
   return (
     <nav className="navbar">
       <div className="navbar-inner">
         <div className="navbar-logo">
           <Link className="navbar-brand" to="/">
-            Sapana Chaudhary
+            Anti - Social Social
           </Link>
         </div>
         <div className="navbar-list">
           <ul className="navbar-ul">
             <li className="navbar-item">
               <Link className="navbar-link" to="/">
-                Home
+                Login | Signup
               </Link>
             </li>
-            <li className="navbar-item">
-              <Link className="navbar-link" to="/">
-                About
-              </Link>
+            <li>
+                 <button
+      className="locate"
+      onClick={() => {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+          dispatch({type: FIND_LOCATION, payload: {lat: position.coords.latitude, lng: position.coords.longitude}})
+          },
+          () => null
+        );
+      }}
+    >
+      <img src="/compass.svg" alt="compass" />
+    </button>
             </li>
-            <li className="navbar-item">
-              <Link className="navbar-link" to="/portfolio">
-                Portfolio
-              </Link>
-            </li>
-            <li className="navbar-item">
-              <Link className="navbar-link" to="/contact">
-                Contact
-              </Link>
-            </li>
+   
+
           </ul>
         </div>
       </div>
