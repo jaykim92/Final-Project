@@ -23,6 +23,7 @@ import { formatRelative } from "date-fns";
 
 import "@reach/combobox/styles.css";
 import mapStyles from "./mapStyles";
+import bigfoot from "./bigfoot.png";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -106,11 +107,8 @@ export default function App() {
   return (
     <div>
       <h1>
-     
-
-
-{/* 
-        Anti-Social Social{" "} */} 
+        {/* 
+        Anti-Social Social{" "} */}
 
         <div>
           <img src="./DrakeCartoon2.jpg" style={{ maxWidth: "70px" }}></img>
@@ -165,6 +163,22 @@ export default function App() {
             }}
           />
         ))}
+        {/*from state check if current position lat/long then use that state in marker position */}
+        {state.location && (
+          <Marker
+            key={`${state.location.lat}-${state.location.lng}`}
+            position={{ lat: state.location.lat, lng: state.location.lng }}
+            // onClick={() => {
+            //   setSelected(marker);
+            // }}
+            icon={{
+              url: bigfoot,
+              origin: new window.google.maps.Point(0, 0),
+              anchor: new window.google.maps.Point(15, 15),
+              scaledSize: new window.google.maps.Size(30, 30)
+            }}
+          />
+        )}
         {selected ? (
           <InfoWindow
             position={{ lat: selected.lat, lng: selected.lng }}
