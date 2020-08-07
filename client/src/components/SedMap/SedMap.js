@@ -100,8 +100,9 @@ export default function App() {
   return (
     <div>
       <h1>
-        <img src="./DrakeYes2.jpg" style={{ maxWidth: "70px" }}></img>
+      <img src="./DrakeYes2.jpg" style={{ maxWidth: "70px" }}></img>
         Anti-Social Social{" "}
+
         <div>
           <img src="./DrakeCartoon2.jpg" style={{ maxWidth: "70px" }}></img>
           <span role="img" aria-label="tent">
