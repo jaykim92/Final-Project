@@ -1,5 +1,5 @@
 import React, {createContext, useReducer, useContext} from 'react';
-import {FIND_LOCATION} from './actions';
+import {FIND_LOCATION, CHECK_TOKEN} from './actions';
 
 const AppContext = createContext();
 const {Provider} = AppContext;

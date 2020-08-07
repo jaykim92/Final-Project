@@ -2,7 +2,7 @@
 const jwt = require("jsonwebtoken");
 
 // other imports
-const config = require("../passport/setup");
+const config = require("../passport/config.json");
 const User = require("../models/user");
 
 module.exports = (req, res, next) => {
@@ -11,8 +11,8 @@ module.exports = (req, res, next) => {
   }
 
   // get the last part from a authorization header string like "bearer token-value"
-  const token = req.headers.authorization.split(" ")[1];
-
+  const token = req.headers.authorization
+  console.log(token)
   // decode the token using a secret key-phrase
   return jwt.verify(token, config.jwtSecret, (err, decoded) => {
     // the 401 code is for unauthorized status
@@ -29,7 +29,7 @@ module.exports = (req, res, next) => {
       }
       // pass user details onto next route
       req.user = user;
-      return next();
+      res.json(user)
     });
   });
 };

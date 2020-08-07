@@ -1,5 +1,6 @@
-const User = require('mongoose').model('User');
+const {User}  = require("../models")
 const PassportLocalStrategy = require('passport-local').Strategy;
+const bcrypt = require("bcryptjs");
 
 // set up new local strategy to create account
 module.exports = new PassportLocalStrategy({
@@ -9,7 +10,7 @@ module.exports = new PassportLocalStrategy({
   passReqToCallback: true
 }, (req, email, password, done) => {
   const userData = {
-    email: email.trim(),
+    username: email.trim(),
     password: password.trim(),
     name: req.body.name.trim()
   };
