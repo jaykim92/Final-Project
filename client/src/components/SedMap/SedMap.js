@@ -110,7 +110,7 @@ export default function App() {
 
 
 {/* 
-        Anti-Social Social{" "} */} */}
+        Anti-Social Social{" "} */} 
 
         <div>
           <img src="./DrakeCartoon2.jpg" style={{ maxWidth: "70px" }}></img>
