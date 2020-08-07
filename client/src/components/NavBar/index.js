@@ -31,8 +31,9 @@ function Navbar() {
         navigator.geolocation.getCurrentPosition(
           (position) => {
           dispatch({type: FIND_LOCATION, payload: {lat: position.coords.latitude, lng: position.coords.longitude}})
+
           },
-          () => null
+          () => null 
         );
       }}
     >

@@ -6,7 +6,7 @@ const {Provider} = AppContext;
 
 const reducer = (state, action) => {
     switch(action.type) {
-        case FIND_LOCATION:
+        case "FIND_LOCATION":
             return {
                 ...state,
                 location: action.payload
