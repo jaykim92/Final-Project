@@ -12,9 +12,13 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-inner">
         <div className="navbar-logo">
-          <Link className="navbar-brand" to="/">
-            <img src="./DrakeYes2.jpg" style={{ maxWidth: "70px" }}></img> Anti - Social Social
+          
+          <div>
+           <img src="./DrakeYes2.jpg" style={{ maxWidth: "70px" }}></img><Link className="navbar-brand" to="/">
+            Anti - Social Social
           </Link>
+           
+          </div>
         </div>
         <div className="navbar-list">
           <ul className="navbar-ul">
@@ -24,22 +28,26 @@ function Navbar() {
               </Link>
             </li>
             <li>
-                 <button
-      className="locate"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-          dispatch({type: FIND_LOCATION, payload: {lat: position.coords.latitude, lng: position.coords.longitude}})
-          },
-          () => null
-        );
-      }}
-    >
-      <img src="/compass.svg" alt="compass" />
-    </button>
+              <button
+                className="locate"
+                onClick={() => {
+                  navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                      dispatch({
+                        type: FIND_LOCATION,
+                        payload: {
+                          lat: position.coords.latitude,
+                          lng: position.coords.longitude
+                        }
+                      });
+                    },
+                    () => null
+                  );
+                }}
+              >
+                <img src="/compass.svg" alt="compass" />
+              </button>
             </li>
-   
-
           </ul>
         </div>
       </div>
