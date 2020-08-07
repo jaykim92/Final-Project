@@ -1,10 +1,12 @@
 // packages
 const express = require("express");
 const mongoose = require("mongoose");
-
+const logger = require("morgan")
 // express setup
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+app.use(logger("dev"));
 
 // middleware
 app.use(express.urlencoded({extended:true}));
