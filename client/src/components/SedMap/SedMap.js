@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
   GoogleMap,
   useLoadScript,
@@ -6,6 +6,7 @@ import {
   InfoWindow
 } from "@react-google-maps/api";
 
+import {useAppContext} from "../../utils/GlobalState";
 
 import usePlacesAutocomplete, {
   getGeocode,
@@ -42,6 +43,7 @@ export default function App() {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyBzMU8Sce5illSkT0uXrZgEN7rqAoW1hNI"
   });
+  const [state] = useAppContext();
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
   const [location, setLocation] = React.useState({
@@ -49,6 +51,10 @@ export default function App() {
     lat: "",
     lgn: ""
   });
+
+  useEffect(()=> {
+    if(state?.location) panTo(state.location) 
+  }, [state?.location])
 
   const onMapClick = React.useCallback((e) => {
     setMarkers((current) => [
