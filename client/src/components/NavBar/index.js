@@ -13,7 +13,8 @@ function Navbar() {
       <div className="navbar-inner">
         <div className="navbar-logo">
           <Link className="navbar-brand" to="/">
-            <img src="./DrakeYes2.jpg" style={{ maxWidth: "70px" }}></img> Anti - Social Social
+            <img src="./DrakeYes3.jpg" style={{ maxWidth: "70px" }}></img>
+             Anti - Social Social
           </Link>
         </div>
         <div className="navbar-list">

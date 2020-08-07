@@ -40,9 +40,9 @@ h1 {
 }
 
 .locate {
-  /* position: absolute;
+  /* position: absolute; */
   top: 1rem;
-  right: 1rem; */
+  right: 1rem;
   background: none;
   border: none;
   z-index: 10;
