@@ -1,1 +1,2 @@
 export const FIND_LOCATION = "FIND_LOCATION";
+export const CHECK_TOKEN = "CHECK_TOKEN";
