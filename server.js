@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
-// conncetion to MongoDB
+// connection to MongoDB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/users");
 
 // Start the API server

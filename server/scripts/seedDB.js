@@ -17,6 +17,7 @@ function getLong(min, max) {
 // functions for pushing to creating random seed
 let userSeed = [];
 
+
 function getUsers() {
   let randomUser = {
     username: faker.internet.userName(),
