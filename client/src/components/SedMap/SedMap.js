@@ -67,28 +67,28 @@ export default function App() {
     ]);
   }, []);
 
-  const renderLocateBtn = () => <button
-      className="locate"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-             setLocation({
-               lat: position.coords.latitude,
-               lng: position.coords.longitude,
-               show: true
-             });
-           panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            })
-            ;
-          },
-          () => null
-        );
-      }}
-    >
-      <img src="/compass.svg" alt="compass" />
-    </button>
+  // const renderLocateBtn = () => <button
+  //     className="locate"
+  //     onClick={() => {
+  //       navigator.geolocation.getCurrentPosition(
+  //         (position) => {
+  //            setLocation({
+  //              lat: position.coords.latitude,
+  //              lng: position.coords.longitude,
+  //              show: true
+  //            });
+  //          panTo({
+  //             lat: position.coords.latitude,
+  //             lng: position.coords.longitude,
+  //           })
+  //           ;
+  //         },
+  //         () => null
+  //       );
+  //     }}
+  //   >
+  //     <img src="/compass.svg" alt="compass" />
+  //   </button>
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -106,8 +106,8 @@ export default function App() {
   return (
     <div>
       <h1>
-      <img src="./DrakeYes2.jpg" style={{ maxWidth: "70px" }}></img>
-        Anti-Social Social{" "}
+      {/* <img src="./DrakeYes2.jpg" style={{ maxWidth: "70px" }}></img>
+        Anti-Social Social{" "} */}
 
         <div>
           <img src="./DrakeCartoon2.jpg" style={{ maxWidth: "70px" }}></img>
@@ -122,7 +122,7 @@ export default function App() {
         </div>
       </h1>
 
-      {renderLocateBtn()}
+      {/* {renderLocateBtn()} */}
       <Marker
         key={`${location.lat}-${location.lng}`}
         position={{ lat: location.lat, lng: location.lng }}
