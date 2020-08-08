@@ -44,6 +44,7 @@ var heatmapData = [
 ];
 
 
+
 const libraries = ["places","visualization"] ;
 const mapContainerStyle = {
   height: "100vh",
@@ -126,6 +127,7 @@ export default function App() {
 
   return (
     <div>
+  
       <h1>
         {/* 
         Anti-Social Social{" "} */}
