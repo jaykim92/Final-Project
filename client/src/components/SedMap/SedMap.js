@@ -3,7 +3,8 @@ import {
   GoogleMap,
   useLoadScript,
   Marker,
-  InfoWindow
+  InfoWindow,
+  HeatmapLayer
 } from "@react-google-maps/api";
 
 import {useAppContext} from "../../utils/GlobalState";
@@ -25,7 +26,25 @@ import "@reach/combobox/styles.css";
 import mapStyles from "./mapStyles";
 import bigfoot from "./bigfoot.png";
 
-const libraries = ["places"];
+var heatmapData = [
+  {lat: 37.782, lng: -122.447},
+  {lat: 37.782, lng: -122.445},
+  {lat: 37.782, lng: -122.443},
+  {lat: 37.782, lng: -122.441},
+  {lat: 37.782, lng: -122.439},
+  {lat: 37.782, lng: -122.437},
+  {lat: 37.782, lng: -122.435},
+  {lat: 37.785, lng: -122.447},
+  {lat: 37.785, lng: -122.445},
+  {lat: 37.785, lng: -122.443},
+  {lat: 37.785, lng: -122.441},
+  {lat: 37.785, lng: -122.439},
+  {lat: 37.785, lng: -122.437},
+  {lat: 37.785, lng: -122.435}
+];
+
+
+const libraries = ["places","visualization"] ;
 const mapContainerStyle = {
   height: "100vh",
   width: "100vw"
@@ -42,7 +61,8 @@ const center = {
 
 export default function App() {
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBzMU8Sce5illSkT0uXrZgEN7rqAoW1hNI"
+    googleMapsApiKey: "AIzaSyBzMU8Sce5illSkT0uXrZgEN7rqAoW1hNI",
+    libraries
   });
   const [state] = useAppContext();
   const [markers, setMarkers] = React.useState([]);
@@ -148,6 +168,7 @@ export default function App() {
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
+        <HeatmapLayer data={heatmapData} />
         {markers.map((marker) => (
           <Marker
             key={`${marker.lat}-${marker.lng}`}
