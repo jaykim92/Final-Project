@@ -15,12 +15,20 @@ code {
 
 h1 {
   position: absolute;
-  top: 8rem;
+  top: 9rem;
   left: 2rem;
   color: #281414;
   z-index: 10;
   margin: 0;
   padding: 0;
+}
+
+.container {
+  display: flex;
+}
+
+span {
+  position: relative;
 }
 
 .search {

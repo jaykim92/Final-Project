@@ -59,7 +59,7 @@ export default function ButtonAppBar() {
             <Button color="inherit" className={classes.loginBtn}>
               Resources
             </Button>
-            {/* <Button
+            <Button
               className={classes.locate}
               onClick={() => {
                 navigator.geolocation.getCurrentPosition(
@@ -81,7 +81,7 @@ export default function ButtonAppBar() {
                 src="/compass.svg"
                 alt="compass"
               />
-            </Button> */}
+            </Button>
           </Typography>
         </Toolbar>
       </AppBar>
