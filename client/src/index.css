@@ -27,6 +27,10 @@ h1 {
   display: flex;
 }
 
+span {
+  position: relative;
+}
+
 .search {
   position: absolute;
   top: 1rem;
