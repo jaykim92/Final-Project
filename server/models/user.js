@@ -1,17 +1,19 @@
 // packages
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+
+// other imports
 const Schema = mongoose.Schema;
 const SALT_ROUNDS = 10;
 
 // create user schema
 const userSchema = new Schema({
-    username: {type: String, required: true},
+    email: {type: String, required: true},
     password: {type: String, required: true},
-    firstName: {type: String, required: true, default: "dummy"},
-    lastName: {type: String, required: true, default: "dummy"},
-    latitude: {type: Number, required: true, default: 23},
-    longitude: {type: Number, required: true, default: 21}
+    firstName: {type: String, required: true},
+    lastName: {type: String, required: true},
+    lat: {type: Number, default: 33.38},
+    lng: {type: Number, default: -117.5}
 });
 
 // compare inputted password to the hashed pw in the database
