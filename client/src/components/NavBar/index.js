@@ -15,16 +15,24 @@ function Navbar() {
         <img src="./DrakeYes3.jpg" style={{ maxWidth: "70px", marginRight: "15px" }}></img>
           <Link className="navbar-brand" to="/">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <img src="./DrakeYes3.jpg" style={{ maxWidth: "70px" }}></img>
             Anti - Social Social
 =======
              Anti - Social Social
 >>>>>>> 2f33a32dd71df18d80d1bc4c608d79b371134e67
+=======
+
+            <img src="./DrakeYes3.jpg" style={{ maxWidth: "70px" }}></img>
+            Anti - Social Social
+
+>>>>>>> 80286d537def3720b3e9d3de73e14f1a161cfb29
           </Link>
         </div>
         <div className="navbar-list">
           <ul className="navbar-ul">
             <li className="navbar-item">
+<<<<<<< HEAD
 <<<<<<< HEAD
               <Link className="navbar-link" to="/">
                 <span>Resources</span>| <span id="login"> Login </span> |{" "}
@@ -33,6 +41,13 @@ function Navbar() {
               <Link className="navbar-link" to="/login">
                 Login | Signup
 >>>>>>> 2f33a32dd71df18d80d1bc4c608d79b371134e67
+=======
+
+              <Link className="navbar-link" to="/">
+                <span>Resources</span>| <span id="login"> Login </span> |{" "}
+                  <span>Signup </span>
+
+>>>>>>> 80286d537def3720b3e9d3de73e14f1a161cfb29
               </Link>
             </li>
             <li>
