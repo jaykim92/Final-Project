@@ -131,11 +131,11 @@ export default function App() {
         Anti-Social Social{" "} */}
 
         <div className="container">
-          <img src="./DrakeCartoon2.jpg" style={{ maxWidth: "70px" }}></img>
-          <span role="img" aria-label="tent" style={{marginTop: "10px"}}>
+          <img src="./DrakeCartoon2.jpg" style={{ maxWidth: "70px"}}></img>
+          <span role="img" aria-label="tent" style={{left: "10px"}}>
             🧑🏻‍🤝‍🧑🏻🧑🏽‍🤝‍🧑🏽🧑🏻‍🤝‍🧑🏻🧑🏽‍🤝‍🧑🏽🧑🏾‍🤝‍🧑🏾
           </span>
-          <span role="img" aria-label="tent">
+          <span role="img" aria-label="tent" style={{top: "20px", left: "-192px"}}>
             🧑🏼‍🤝‍🧑🏼🧑🏻‍🤝‍🧑🏽🧑🏻‍🤝‍🧑👩‍👨‍👨‍🧑🏻‍🤝‍🧑🏻
           </span>
         </div>
