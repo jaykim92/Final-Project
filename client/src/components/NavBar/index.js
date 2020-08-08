@@ -13,14 +13,14 @@ function Navbar() {
       <div className="navbar-inner">
         <div className="navbar-logo">
           <Link className="navbar-brand" to="/">
-            <img src="./DrakeYes3.jpg" style={{ maxWidth: "70px" }}></img>
+            <img src="./DrakeYes3.jpg" style={{ maxWidth: "70px", marginRight: "15px" }}></img>
              Anti - Social Social
           </Link>
         </div>
         <div className="navbar-list">
           <ul className="navbar-ul">
             <li className="navbar-item">
-              <Link className="navbar-link" to="/">
+              <Link className="navbar-link" to="/login">
                 Login | Signup
               </Link>
             </li>

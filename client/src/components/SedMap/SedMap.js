@@ -110,17 +110,16 @@ export default function App() {
         {/* 
         Anti-Social Social{" "} */}
 
-        <div>
+        <div className="container">
           <img src="./DrakeCartoon2.jpg" style={{ maxWidth: "70px" }}></img>
-          <span role="img" aria-label="tent">
+          <span role="img" aria-label="tent" style={{marginTop: "10px"}}>
             🧑🏻‍🤝‍🧑🏻🧑🏽‍🤝‍🧑🏽🧑🏻‍🤝‍🧑🏻🧑🏽‍🤝‍🧑🏽🧑🏾‍🤝‍🧑🏾
           </span>
-        </div>
-        <div>
           <span role="img" aria-label="tent">
             🧑🏼‍🤝‍🧑🏼🧑🏻‍🤝‍🧑🏽🧑🏻‍🤝‍🧑👩‍👨‍👨‍🧑🏻‍🤝‍🧑🏻
           </span>
         </div>
+        
       </h1>
 
       {/* {renderLocateBtn()} */}
