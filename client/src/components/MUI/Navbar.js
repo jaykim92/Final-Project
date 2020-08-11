@@ -35,9 +35,10 @@ const useStyles = makeStyles((theme) => ({
     color: "lime"
   },
   locate: {
-      height:"40px",
-        position:"absolute",
-        right: "10%"
+      // height:"40px",
+      //   position:"absolute",
+      //   right: "10%"
+      float: "right"
   }
 }));
 
@@ -53,15 +54,6 @@ export default function ButtonAppBar() {
             Anti - Social Social
           </Link>
           <Typography variant="h6" className={classes.title}>
-            <Button color="inherit" className={classes.loginBtn}>
-              Login
-            </Button>
-            <Button color="inherit" className={classes.loginBtn}>
-              Sign Up
-            </Button>
-            <Button color="inherit" className={classes.loginBtn}>
-              Resources
-            </Button>
             <Button
               className={classes.locate}
               onClick={() => {
@@ -79,12 +71,22 @@ export default function ButtonAppBar() {
                 );
               }}
             >
-              <img
+              Find Me {`-->`} <img
                 style={{ height: "20px" }}
                 src="/compass.svg"
                 alt="compass"
               />
             </Button>
+            <Button color="inherit" className={classes.loginBtn}>
+              Login
+            </Button>
+            <Button color="inherit" className={classes.loginBtn}>
+              Sign Up
+            </Button>
+            <Button color="inherit" className={classes.loginBtn}>
+              Resources
+            </Button>
+            
           </Typography>
         </Toolbar>
       </AppBar>

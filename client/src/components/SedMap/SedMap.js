@@ -25,25 +25,10 @@ import { formatRelative } from "date-fns";
 import "@reach/combobox/styles.css";
 import mapStyles from "./mapStyles";
 import bigfoot from "./bigfoot.png";
+import {getHeatmapData} from '../../utils/API.js'
 
-var heatmapData = [
-  {lat: 37.782, lng: -122.447},
-  {lat: 37.782, lng: -122.445},
-  {lat: 37.782, lng: -122.443},
-  {lat: 37.782, lng: -122.441},
-  {lat: 37.782, lng: -122.439},
-  {lat: 37.782, lng: -122.437},
-  {lat: 37.782, lng: -122.435},
-  {lat: 37.785, lng: -122.447},
-  {lat: 37.785, lng: -122.445},
-  {lat: 37.785, lng: -122.443},
-  {lat: 37.785, lng: -122.441},
-  {lat: 37.785, lng: -122.439},
-  {lat: 37.785, lng: -122.437},
-  {lat: 37.785, lng: -122.435}
-];
-
-
+//reducer actions
+import {STORE_HEATMAP_DATA} from '../../utils/actions';
 
 const libraries = ["places","visualization"] ;
 const mapContainerStyle = {
@@ -64,7 +49,7 @@ export default function App() {
     googleMapsApiKey: "AIzaSyBzMU8Sce5illSkT0uXrZgEN7rqAoW1hNI",
     libraries
   });
-  const [state] = useAppContext();
+  const [state, dispatch] = useAppContext();
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
   const [location, setLocation] = React.useState({
@@ -74,7 +59,8 @@ export default function App() {
   });
 
   useEffect(()=> {
-    if(state?.location) panTo(state.location) 
+    if(state?.location) panTo(state.location);
+    getHeatmapData().then(({data})=> dispatch({type:STORE_HEATMAP_DATA, payload: data}))
   }, [state?.location])
 
   const onMapClick = React.useCallback((e) => {
@@ -137,7 +123,7 @@ export default function App() {
             🧑🏻‍🤝‍🧑🏻🧑🏽‍🤝‍🧑🏽🧑🏻‍🤝‍🧑🏻🧑🏽‍🤝‍🧑🏽🧑🏾‍🤝‍🧑🏾
           </span>
           <span role="img" aria-label="tent" style={{top: "20px", left: "-192px"}}>
-            🧑🏼‍🤝‍🧑🏼🧑🏻‍🤝‍🧑🏽🧑🏻‍🤝‍🧑👩‍👨‍👨‍🧑🏻‍🤝‍🧑🏻
+            🧑🏼‍🤝‍🧑🏼🧑🏻‍🤝‍🧑🏽🧑🏻‍🤝‍🧑👩‍👨‍👨‍🧑🏻‍🤝‍🧑🏻🧑🏻‍🤝‍🧑
           </span>
         </div>
         
@@ -168,7 +154,7 @@ export default function App() {
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        <HeatmapLayer data={heatmapData} />
+        <HeatmapLayer data={state.heatmap} />
         {markers.map((marker) => (
           <Marker
             key={`${marker.lat}-${marker.lng}`}
