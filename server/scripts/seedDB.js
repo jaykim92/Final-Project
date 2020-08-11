@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 // imports
 const db = require("../models/user");
+const { seed } = require("faker");
 
 // functions for random coordinates
 function getLat(min, max) {
@@ -42,14 +43,10 @@ fillArray();
 // connect to database
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/users");
 
+
 // insert data from userSeed array to MongoDB, remove any collections if any exist
-db.deleteMany({})
-  .then(() => db.collection.insertMany(userSeed))
-  .then(data => {
-    console.log(data.result.n + "records inserted");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
+const seedDB = () => db.deleteMany({}).then(() => db.collection.insertMany(userSeed));
+
+
+module.exports = seedDB;
+

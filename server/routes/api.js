@@ -1,6 +1,7 @@
 // packages
 const router = require('express').Router();
 const db = require('../models');
+const seeder = require("../scripts/seedDB")
 
 router.get('/dashboard', (req, res) => {
     res.status(200).json({
@@ -16,6 +17,15 @@ router.get('/coords', (req,res) => {
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
 });
+
+router.post("/runseed", (req,res)=> {
+  if(req.body.secret === "jayiscool"){
+    seeder().then(data=> res.json("SUCCESSFULLY SEEDED!"))
+  }else{
+    res.json("You are not allowed to seed the DB Sederick!")
+  }
+  
+})
   
 
 //Test Data
