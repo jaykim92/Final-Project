@@ -47,8 +47,7 @@ var heatmapData = [
 
 const libraries = ["places","visualization"] ;
 const mapContainerStyle = {
-  height: "100vh",
-  width: "100vw"
+  height: "94vh",
 };
 const options = {
   styles: mapStyles,
