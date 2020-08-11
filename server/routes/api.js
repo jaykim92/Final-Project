@@ -10,9 +10,9 @@ router.get('/dashboard', (req, res) => {
   });
 
 //Returns all user coords
-router.get('/users', (req,res) => {
+router.get('/coords', (req,res) => {
   db.User
-    .find({}, {longitude:1, latitude:1})
+    .find({}, {lat:1, lng:1})
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
 });

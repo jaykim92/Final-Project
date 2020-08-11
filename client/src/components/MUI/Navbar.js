@@ -22,10 +22,13 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1
   },
   navBrand: {
-    color: "black"
+    color: "black",
+    fontSize: "1.5rem",
+    fontWeight: "bold"
   },
   navIcon: {
-    maxWidth: "30px"
+    maxWidth: "35px",
+    marginRight: "10px"
   },
   loginBtn: {
     float: "right",
@@ -45,8 +48,8 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
+          <img src="./DrakeYes3.jpg" className={classes.navIcon}></img>
           <Link className={classes.navBrand} to="/">
-            <img src="./DrakeYes3.jpg" className={classes.navIcon}></img>
             Anti - Social Social
           </Link>
           <Typography variant="h6" className={classes.title}>
