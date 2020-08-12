@@ -7,3 +7,4 @@ export const validateJWT = jwt => axios.post("/api/get_user", {
         authorization: jwt
     }
 });
+export const getHeatmapData = () => axios.get("/api/coords")
