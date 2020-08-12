@@ -12,7 +12,10 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-inner">
         <div className="navbar-logo">
-        <img src="./DrakeYes3.jpg" style={{ maxWidth: "70px", marginRight: "15px" }}></img>
+          <img
+            src="./DrakeYes3.jpg"
+            style={{ maxWidth: "70px", marginRight: "15px" }}
+          ></img>
           <Link className="navbar-brand" to="/">
             <img src="./DrakeYes3.jpg" style={{ maxWidth: "70px" }}></img>
             Anti - Social Social
@@ -22,8 +25,12 @@ function Navbar() {
           <ul className="navbar-ul">
             <li className="navbar-item">
               <Link className="navbar-link" to="/">
-                <span>Resources</span>| <span id="login"> Login </span> |{" "}
-                  <span>Signup </span>
+                <span href="Home">Home</span> | <span href="">Resources</span>|{" "}
+                <span href="auth" id="login">
+                  {" "}
+                  Login{" "}
+                </span>{" "}
+                | <span>Signup </span>
               </Link>
             </li>
             <li>
