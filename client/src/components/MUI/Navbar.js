@@ -32,13 +32,19 @@ const useStyles = makeStyles((theme) => ({
   },
   loginBtn: {
     float: "right",
-    color: "lime"
+    color: "black",
+    backgroundColor: "lightblue",
+    borderRadius: "5px",
+    boxShadow: "0 2px 1px 1px purple",
+    textTransform: "none",
+    marginRight: "10px"
   },
   locate: {
       // height:"40px",
       //   position:"absolute",
       //   right: "10%"
-      float: "right"
+      float: "right",
+      textTransform: "none"
   }
 }));
 
@@ -49,11 +55,11 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <img src="./DrakeYes3.jpg" className={classes.navIcon}></img>
+          <img src={require("./DrakeYes3.jpg")} className={classes.navIcon}></img>
           <Link className={classes.navBrand} to="/">
             Anti - Social Social
           </Link>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h4" className={classes.title}>
             <Button
               className={classes.locate}
               onClick={() => {
@@ -71,23 +77,37 @@ export default function ButtonAppBar() {
                 );
               }}
             >
-              Find Me {`-->`} <img
+              Find Me <img src={require("./arrow_right_alt-24px.svg")}></img>
+              <img
                 style={{ height: "20px" }}
                 src="/compass.svg"
                 alt="compass"
               />
             </Button>
-            <Button color="inherit" className={classes.loginBtn}>
-              Login
-            </Button>
-            <Button color="inherit" className={classes.loginBtn}>
+            <Link className={classes.navBrand} to="/auth/login">
+              <Button color="inherit" className={classes.loginBtn}>
+                Login
+              </Button>
+            </Link>
+
+            <Link className={classes.navBrand} to="/auth/signup">
+             <Button
+              color="inherit"
+              className={classes.loginBtn}
+            >
               Sign Up
             </Button>
-            <Button color="inherit" className={classes.loginBtn}>
+            </Link>
+            <a href={require("./safety.pdf")} target="_blank">
+              <Button
+              href=""
+              color="inherit"
+              className={classes.loginBtn}
+            >
               Resources
             </Button>
-            
-          </Typography>
+            </a>
+            </Typography>
         </Toolbar>
       </AppBar>
     </div>

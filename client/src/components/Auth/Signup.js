@@ -139,7 +139,7 @@ export default function LoginForm() {
         className={classes.input}
       />
       <Button variant="contained" type="submit" color="primary">
-        Primary
+        Submit
       </Button>
     </form>
   );
