@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     backgroundColor: "lightblue",
     borderRadius: "5px",
-    boxShadow: "0 2px 1px 1px purple",
+    boxShadow: "0 2px 1px 1px white",
     textTransform: "none",
     marginRight: "10px"
   },
@@ -56,7 +56,7 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           <img src={require("./DrakeYes3.jpg")} className={classes.navIcon}></img>
-          <Link className={classes.navBrand} to="/">
+          <Link className={classes.navBrand} to="/home">
             Anti - Social Social
           </Link>
           <Typography variant="h4" className={classes.title}>
@@ -79,7 +79,7 @@ export default function ButtonAppBar() {
             >
               Find Me <img src={require("./arrow_right_alt-24px.svg")}></img>
               <img
-                style={{ height: "20px" }}
+                style={{ height: "40px" }}
                 src="/compass.svg"
                 alt="compass"
               />

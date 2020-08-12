@@ -25,7 +25,7 @@ function Navbar() {
           <ul className="navbar-ul">
             <li className="navbar-item">
               <Link className="navbar-link" to="/">
-                <span href="Home">Home</span> | <span href="">Resources</span>|{" "}
+                <span href="/home">Home</span> | <span href="">Resources</span>|{" "}
                 <span href="auth" id="login">
                   {" "}
                   Login{" "}

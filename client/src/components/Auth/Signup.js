@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import {signup} from '../../utils/API'
+import {signup} from '../../utils/API';
+import {useAppContext} from "../../utils/GlobalState.js"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function LoginForm() {
+  const [state,dispatch] = useAppContext()
   const classes = useStyles();
     const [userInfo, setUserInfo] = useState({
         firstName: "",
