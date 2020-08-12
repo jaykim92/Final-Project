@@ -3,6 +3,15 @@ const router = require('express').Router();
 const db = require('../models');
 const seeder = require("../scripts/seedDB")
 
+const random = (a,b,c,d) => {
+  const centerLat = 33.68;
+  const centerLng = -117.78;
+  const x = (Math.random()-.5)*.2;
+  const yComp = ((Math.random()-.5) > 0 ? 1 : -1) * ((.01-x**2)**.5);
+  const y = Math.random()*yComp;
+  return {lat:centerLat+x,lng:centerLng+y}
+}
+
 router.get('/dashboard', (req, res) => {
     res.status(200).json({
       // user values passed through from auth middleware
@@ -14,9 +23,18 @@ router.get('/dashboard', (req, res) => {
 router.get('/coords', (req,res) => {
   db.User
     .find({}, {lat:1, lng:1})
-    .then(dbModel => res.json(dbModel))
+    .then(dbModel => {
+      res.json(dbModel)
+    })
     .catch(err => res.status(422).json(err));
 });
+
+router.get('/coords/simulated/:count', ({params:{count}},res)=>{
+  console.log(count)
+  const randomized = [...Array(+count).keys()].map(a=> random())
+  console.log(randomized)
+  res.json(randomized)
+}) 
 
 router.post("/runseed", (req,res)=> {
   if(req.body.secret === "jayiscool"){

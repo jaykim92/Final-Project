@@ -25,7 +25,7 @@ import { formatRelative } from "date-fns";
 import "@reach/combobox/styles.css";
 import mapStyles from "./mapStyles";
 import bigfoot from "./bigfoot.png";
-import {getHeatmapData} from '../../utils/API.js'
+import {getHeatmapData, getFakeHeatmapData} from '../../utils/API.js'
 
 //reducer actions
 import {STORE_HEATMAP_DATA} from '../../utils/actions';
@@ -58,9 +58,13 @@ export default function App() {
     lgn: ""
   });
 
+  console.log(state.heatmap)
+
   useEffect(()=> {
     if(state?.location) panTo(state.location);
-    getHeatmapData().then(({data})=> dispatch({type:STORE_HEATMAP_DATA, payload: data}))
+    getFakeHeatmapData(500).then(({data})=> {
+      dispatch({type:STORE_HEATMAP_DATA, payload: data})
+    })
   }, [state?.location])
 
   const onMapClick = React.useCallback((e) => {
@@ -148,13 +152,13 @@ export default function App() {
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
-        zoom={13}
+        zoom={12.5}
         center={center}
         options={options}
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        <HeatmapLayer data={state.heatmap} />
+        <HeatmapLayer data={state.heatmap.map(coord => new window.google.maps.LatLng(coord))} />
         {markers.map((marker) => (
           <Marker
             key={`${marker.lat}-${marker.lng}`}
