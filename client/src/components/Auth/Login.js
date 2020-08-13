@@ -6,6 +6,7 @@ import {Redirect} from "react-router-dom";
 import { login } from "../../utils/API";
 import {useAppContext} from "../../utils/GlobalState.js";
 import {LOGIN_SUCCESS, PENDING} from "../../utils/actions";
+import { lightBlue } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,11 +15,11 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "10px",
     width: "80vw",
     margin: "auto",
-    backgroundColor: "#00203FFF",
+    backgroundColor: "#adcae6",
     padding: "30px"
   },
   input: {
-    backgroundColor: "#ADEFD1FF",
+    backgroundColor: "white",
     width: "60%",
     marginLeft: "20%"
   },
