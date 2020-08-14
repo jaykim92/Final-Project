@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
   },
   navBrand: {
     color: "black",
-    fontSize: "1.5rem",
-    fontWeight: "bold"
+    fontSize: "2rem",
+    fontFamily: 'Antic Slab, serif'
   },
   navIcon: {
     maxWidth: "35px",
