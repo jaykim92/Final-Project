@@ -41,7 +41,7 @@ function fillArray() {
 fillArray();
 
 // connect to database
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/users");
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/users");
 
 
 // insert data from userSeed array to MongoDB, remove any collections if any exist
