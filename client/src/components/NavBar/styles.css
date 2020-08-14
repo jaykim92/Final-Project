@@ -17,7 +17,9 @@
     text-decoration: none;
     color: black;
     align-self: center;
-    font-size: 2.2rem;
+    font-size: 5rem;
+    font-family: 'Antic Slab',
+    serif;
     font-weight: bold;
     position: relative;
     top: -24px;
