@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { signup } from "../../utils/API";
+import { Redirect } from "react-router-dom";
+import { login } from "../../utils/API";
+import { useAppContext } from "../../utils/GlobalState.js";
+import { LOGIN_SUCCESS, PENDING } from "../../utils/actions";
+import { lightBlue } from "@material-ui/core/colors";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     margin: theme.spacing(1),
     marginTop: "5vh",
     borderRadius: "10px",
     width: "80vw",
     margin: "auto",
-    backgroundColor: "#00203FFF",
+    backgroundColor: "#adcae6",
     padding: "30px"
   },
+  textField: {
+    width: "100%"
+  },
   input: {
-    backgroundColor: "#ADEFD1FF",
-    width: "60%",
-    marginLeft: "20%"
+    backgroundColor: "white"
   },
   warning: {
     color: "red",
@@ -28,94 +34,76 @@ const useStyles = makeStyles((theme) => ({
 export default function LoginForm() {
   const classes = useStyles();
   const [userInfo, setUserInfo] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
-    password: "",
-    passwordConfirm: "",
-    lat: "",
-    lng: ""
+    password: ""
   });
+  const [state, dispatch] = useAppContext();
   const [warningText, setWarningText] = useState("");
-  useEffect(() => {
-    window.addEventListener("load", () => {
-      navigator.geolocation.getCurrentPosition((loc) => {
-        console.log(loc);
-        setUserInfo({
-          ...userInfo,
-          lat: loc.coords.latitude,
-          lng: loc.coords.longitude
-        });
-      });
-    });
-  }, []);
 
   const handleInputChange = ({ target: { name, value } }) => {
     setUserInfo({ ...userInfo, [name]: value });
   };
-  const handleSubmit = (e) => {
+
+  const handleSubmit = e => {
     e.preventDefault();
-    if (validateInput()) {
-      //some API call to server and sign up
-      signup(userInfo).then(({ data }) => console.log(data));
-    }
-  };
-
-  const validateInput = () => {
-    const regex = new RegExp(/([^@]+)@([^@]+)\.(.+)$/i);
-    if (!regex.test(userInfo.email)) {
-      setWarningText("That is not a valid email!");
-      return false;
-    }
-    if (
-      !userInfo.firstName ||
-      !userInfo.lastName ||
-      !userInfo.email ||
-      !userInfo.password ||
-      !userInfo.passwordConfirm
-    ) {
-      setWarningText("Please fill out all required fields!");
-      return false;
-    }
-    if (userInfo.password !== userInfo.passwordConfirm) {
-      setWarningText("Please make sure the passwords match!");
-      return false;
-    }
-
-    return true;
+    dispatch({ action: PENDING });
+    //some API call to server and sign up
+    login(userInfo).then(({ data }) => {
+      dispatch({ type: LOGIN_SUCCESS, payload: data });
+    });
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={classes.root}
-      noValidate
-      autoComplete="off"
-    >
-      <p className={classes.warning}>{warningText}</p>
-      <TextField
-        id="outlined-secondary"
-        label="email"
-        name="email"
-        onChange={handleInputChange}
-        variant="outlined"
-        className={classes.input}
-      />
+    <>
+      {state.user ? <Redirect to="/home" /> : ""}
+      <form
+        onSubmit={handleSubmit}
+        className={classes.root}
+        noValidate
+        autoComplete="off"
+      >
+        <p className={classes.warning}>{warningText}</p>
+        <Grid container spacing={2} style={{marginBottom: "2rem"}}>
+          <Grid item xs={12} lg={6}>
+            <TextField
+              id="outlined-secondary"
+              label="email"
+              name="email"
+              onChange={handleInputChange}
+              variant="outlined"
+              className={classes.textField}
+              InputProps={{
+                className: classes.input
+              }}
+            />
+          </Grid>
 
-      <TextField
-        id="outlined-secondary"
-        label="Password"
-        name="password"
-        type="password"
-        onChange={handleInputChange}
-        variant="outlined"
-        className={classes.input}
-      />
-      
-   
-      <Button variant="contained" type="submit" color="primary">
-        Submit
-      </Button>
-    </form>
+          <Grid item xs={12} lg={6}>
+            <TextField
+              id="outlined-secondary"
+              label="Password"
+              name="password"
+              type="password"
+              onChange={handleInputChange}
+              variant="outlined"
+              className={classes.textField}
+              InputProps={{
+                className: classes.input
+              }}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+          <Button
+              variant="contained"
+              type="submit"
+              style={{ backgroundColor: "#193753", color: "white" }}
+            >
+              Submit
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </>
   );
 }

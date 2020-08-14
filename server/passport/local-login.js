@@ -15,9 +15,10 @@ module.exports = new PassportLocalStrategy({
     email: email.trim(),
     password: password.trim()
   };
-
+  console.log(req.body);
+  console.log(email, password)
   // find a user by email address
-  return User.findOne({ username: userData.email }, (err, user) => {
+  return User.findOne({ email: userData.email }, (err, user) => {
     if (err) { return done(err); }
 
     if (!user) {
@@ -46,11 +47,8 @@ module.exports = new PassportLocalStrategy({
       const token = jwt.sign(payload, config.jwtSecret, {
         expiresIn: "1d"
       });
-      const data = {
-        name: user.name
-      };
 
-      return done(null, token, data);
+      return done(null, token, user);
     });
   });
 });

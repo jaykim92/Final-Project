@@ -13,18 +13,19 @@ import { useAppContext } from "../../utils/GlobalState";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: "red"
+    backgroundColor: "#adcae6"
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
+    backgroundColor: "#193753"
   },
   title: {
     flexGrow: 1
   },
   navBrand: {
     color: "black",
-    fontSize: "1.5rem",
-    fontWeight: "bold"
+    fontSize: "2rem",
+    fontFamily: 'Antic Slab, serif'
   },
   navIcon: {
     maxWidth: "35px",
@@ -32,19 +33,19 @@ const useStyles = makeStyles((theme) => ({
   },
   loginBtn: {
     float: "right",
-    color: "black",
-    backgroundColor: "lightblue",
+    color: "white",
+    backgroundColor: "#193753",
     borderRadius: "5px",
-    boxShadow: "0 2px 1px 1px purple",
+    boxShadow: "0 2px 1px 1px white",
     textTransform: "none",
     marginRight: "10px"
   },
   locate: {
-      // height:"40px",
-      //   position:"absolute",
-      //   right: "10%"
-      float: "right",
-      textTransform: "none"
+    // height:"40px",
+    //   position:"absolute",
+    //   right: "10%"
+    float: "right",
+    textTransform: "none"
   }
 }));
 
@@ -53,10 +54,10 @@ export default function ButtonAppBar() {
   const [state, dispatch] = useAppContext();
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static"  class="appBar">
         <Toolbar>
           <img src={require("./DrakeYes3.jpg")} className={classes.navIcon}></img>
-          <Link className={classes.navBrand} to="/">
+          <Link className={classes.navBrand} to="/home">
             Anti - Social Social
           </Link>
           <Typography variant="h4" className={classes.title}>
@@ -79,7 +80,7 @@ export default function ButtonAppBar() {
             >
               Find Me <img src={require("./arrow_right_alt-24px.svg")}></img>
               <img
-                style={{ height: "20px" }}
+                style={{ height: "40px" }}
                 src="/compass.svg"
                 alt="compass"
               />

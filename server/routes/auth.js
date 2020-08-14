@@ -101,24 +101,13 @@ router.post('/signup', (req, res, next) => {
 
     return res.status(200).json({
       success: true,
-      message: 'Welcome'
+      message: 'Welcome',
     });
   })(req, res, next);
 });
 
 router.post('/login', (req, res, next) => {
-  const validationResult = validateLoginForm(req.body);
-  if (!validationResult.success) {
-    return res.status(400).json({
-      success: false,
-      message: validationResult.message,
-      errors: validationResult.errors
-    });
-  }
-
-
   return passport.authenticate('local-login', (err, token, userData) => {
-    console.log("Your JWT - ", token)
     if (err) {
       if (err.name === 'IncorrectCredentialsError') {
         return res.status(400).json({
@@ -138,7 +127,7 @@ router.post('/login', (req, res, next) => {
       success: true,
       message: 'You have successfully logged in!',
       token,
-      user: userData
+      userData
     });
   })(req, res, next);
 });
