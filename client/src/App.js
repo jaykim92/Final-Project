@@ -16,7 +16,7 @@ function App() {
           {/* <Nav/> */}
           <MUINav />
           <Switch>
-            <Route exact path="/home" component={SedMap} />
+            <Route exact path={["/", "/home"]} component={SedMap} />
             <Route exact path="/auth/signup" component={Signup} />
             <Route exact path="/auth/login" component={Login} />
           </Switch>
