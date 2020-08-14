@@ -10,8 +10,9 @@ import {AppProvider} from './utils/GlobalState';
 
 function App() {
   return (
-    <>
+
       <Router>
+
         <AppProvider>
           {/* <Nav/> */}
           <MUINav />
@@ -22,7 +23,7 @@ function App() {
           </Switch>
         </AppProvider>
       </Router>
-    </>
+   
   );
 }
 

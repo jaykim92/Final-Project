@@ -2,30 +2,32 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import {signup} from '../../utils/API'
+import {signup} from '../../utils/API';
+import {useAppContext} from "../../utils/GlobalState.js"
 
 const useStyles = makeStyles((theme) => ({
   root: {
-      margin: theme.spacing(1),
-      marginTop: "5vh",
-      borderRadius: "10px",
-      width: "80vw",
-      margin: "auto",
-      backgroundColor: "#00203FFF",
+    margin: theme.spacing(1),
+    marginTop: "5vh",
+    borderRadius: "10px",
+    width: "80vw",
+    margin: "auto",
+    backgroundColor: "#adcae6",
     padding: "30px"
   },
   input: {
-    backgroundColor: "#ADEFD1FF",
+    backgroundColor: "white",
     width: "60%",
     marginLeft: "20%"
   },
   warning: {
-      color: "red",
-      textAlign: "center"
+    color: "red",
+    textAlign: "center"
   }
 }));
 
 export default function LoginForm() {
+  const [state,dispatch] = useAppContext()
   const classes = useStyles();
     const [userInfo, setUserInfo] = useState({
         firstName: "",

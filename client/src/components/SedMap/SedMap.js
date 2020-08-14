@@ -26,7 +26,7 @@ import "@reach/combobox/styles.css";
 import mapStyles from "./mapStyles";
 import bigfoot from "./bigfoot.png";
 import {getHeatmapData, getFakeHeatmapData} from '../../utils/API.js'
-
+import {Redirect} from "react-router-dom";
 //reducer actions
 import {STORE_HEATMAP_DATA} from '../../utils/actions';
 
@@ -115,22 +115,26 @@ export default function App() {
   if (!isLoaded) return "Loading...";
 
   return (
+    <>
+    {!state.user ? <Redirect to="/auth/login"/> : ""}
     <div>
-  
       <h1>
         {/* 
         Anti-Social Social{" "} */}
 
         <div className="container">
-          <img src="./DrakeCartoon2.jpg" style={{ maxWidth: "70px"}}></img>
-          <span role="img" aria-label="tent" style={{left: "10px"}}>
+          {/* <img src="./DrakeCartoon2.jpg" style={{ maxWidth: "70px" }}></img>
+          <span role="img" aria-label="tent" style={{ left: "10px" }}>
             🧑🏻‍🤝‍🧑🏻🧑🏽‍🤝‍🧑🏽🧑🏻‍🤝‍🧑🏻🧑🏽‍🤝‍🧑🏽🧑🏾‍🤝‍🧑🏾
-          </span>
-          <span role="img" aria-label="tent" style={{top: "20px", left: "-192px"}}>
-            🧑🏼‍🤝‍🧑🏼🧑🏻‍🤝‍🧑🏽🧑🏻‍🤝‍🧑👩‍👨‍👨‍🧑🏻‍🤝‍🧑🏻🧑🏻‍🤝‍🧑
-          </span>
+          </span> */}
+          {/* <span
+            role="img"
+            aria-label="tent"
+            style={{ top: "20px", left: "-192px" }}
+          >
+            🧑🏼‍🤝‍🧑🏼🧑🏻‍🤝‍🧑🏽🧑🏻‍🤝‍🧑🧑🏻‍🤝‍🧑
+          </span> */}
         </div>
-        
       </h1>
 
       {/* {renderLocateBtn()} */}
@@ -158,7 +162,11 @@ export default function App() {
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        <HeatmapLayer data={state.heatmap.map(coord => new window.google.maps.LatLng(coord))} />
+        <HeatmapLayer
+          data={state.heatmap.map(
+            (coord) => new window.google.maps.LatLng(coord)
+          )}
+        />
         {markers.map((marker) => (
           <Marker
             key={`${marker.lat}-${marker.lng}`}
@@ -200,9 +208,17 @@ export default function App() {
             <div>
               <h2>
                 <span role="img" aria-label="Prohibited">
-                  🚫
+                  <img
+                    src="./DrakeCartoon2.jpg"
+                    style={{ maxWidth: "70px" }}
+                  ></img>{" "}
+                 
                 </span>{" "}
-                Alert
+               
+                <img
+                  src={require("./CasualPeople.jpg")}
+                  style={{ maxWidth: "90px" }}
+                ></img>
               </h2>
               <p>Spotted {formatRelative(selected.time, new Date())}</p>
             </div>
@@ -210,6 +226,7 @@ export default function App() {
         ) : null}
       </GoogleMap>
     </div>
+    </>
   );
 };
 

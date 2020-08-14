@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { signup } from "../../utils/API";
+import {Redirect} from "react-router-dom";
+import { login } from "../../utils/API";
+import {useAppContext} from "../../utils/GlobalState.js";
+import {LOGIN_SUCCESS, PENDING} from "../../utils/actions";
+import { lightBlue } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,11 +15,11 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "10px",
     width: "80vw",
     margin: "auto",
-    backgroundColor: "#00203FFF",
+    backgroundColor: "#adcae6",
     padding: "30px"
   },
   input: {
-    backgroundColor: "#ADEFD1FF",
+    backgroundColor: "white",
     width: "60%",
     marginLeft: "20%"
   },
@@ -28,64 +32,30 @@ const useStyles = makeStyles((theme) => ({
 export default function LoginForm() {
   const classes = useStyles();
   const [userInfo, setUserInfo] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
     password: "",
-    passwordConfirm: "",
-    lat: "",
-    lng: ""
   });
+  const [state, dispatch] = useAppContext()
   const [warningText, setWarningText] = useState("");
-  useEffect(() => {
-    window.addEventListener("load", () => {
-      navigator.geolocation.getCurrentPosition((loc) => {
-        console.log(loc);
-        setUserInfo({
-          ...userInfo,
-          lat: loc.coords.latitude,
-          lng: loc.coords.longitude
-        });
-      });
-    });
-  }, []);
 
   const handleInputChange = ({ target: { name, value } }) => {
     setUserInfo({ ...userInfo, [name]: value });
   };
+
   const handleSubmit = (e) => {
+
     e.preventDefault();
-    if (validateInput()) {
+    dispatch({action:PENDING});
       //some API call to server and sign up
-      signup(userInfo).then(({ data }) => console.log(data));
-    }
+      login(userInfo).then(({ data }) => {
+        dispatch({ type: LOGIN_SUCCESS , payload: data})
+      });
   };
 
-  const validateInput = () => {
-    const regex = new RegExp(/([^@]+)@([^@]+)\.(.+)$/i);
-    if (!regex.test(userInfo.email)) {
-      setWarningText("That is not a valid email!");
-      return false;
-    }
-    if (
-      !userInfo.firstName ||
-      !userInfo.lastName ||
-      !userInfo.email ||
-      !userInfo.password ||
-      !userInfo.passwordConfirm
-    ) {
-      setWarningText("Please fill out all required fields!");
-      return false;
-    }
-    if (userInfo.password !== userInfo.passwordConfirm) {
-      setWarningText("Please make sure the passwords match!");
-      return false;
-    }
-
-    return true;
-  };
 
   return (
+    <>
+    {state.user ? <Redirect to="/home"/> : ""}
     <form
       onSubmit={handleSubmit}
       className={classes.root}
@@ -117,5 +87,6 @@ export default function LoginForm() {
         Submit
       </Button>
     </form>
+    </>
   );
 }
