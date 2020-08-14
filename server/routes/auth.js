@@ -2,7 +2,7 @@
 const validator = require('validator');
 const passport = require('passport');
 const router = require('express').Router();
-
+const authorize = require("../middleware/authorization")
 // validate sign up form
 function validateSignupForm(payload) {
   const errors = {};
@@ -131,5 +131,9 @@ router.post('/login', (req, res, next) => {
     });
   })(req, res, next);
 });
+
+router.post("/get_user", authorize, (req,res)=>{
+
+})
 
 module.exports = router;

@@ -1,6 +1,6 @@
-import React, {createContext, useReducer, useContext} from 'react';
-import {FIND_LOCATION, CHECK_TOKEN, STORE_HEATMAP_DATA, LOGIN_SUCCESS, PENDING} from './actions';
-
+import React, {createContext, useReducer, useContext, useEffect} from 'react';
+import {FIND_LOCATION, CHECK_TOKEN, STORE_HEATMAP_DATA, LOGIN_SUCCESS, PENDING, SET_USER} from './actions';
+import {validateJWT} from "./API.js";
 const AppContext = createContext();
 const {Provider} = AppContext;
 
@@ -29,12 +29,21 @@ const reducer = (state, action) => {
                 user: action.payload.userData,
                 loading: false
             }
+        case SET_USER:
+            return {
+                ...state,
+                user:action.payload,
+                loading:false
+            }
         default:
             return state;
     }
+
+   
 }
 
 const AppProvider = ({ value = [], ...props}) => {
+     
     const [state, dispatch] = useReducer(reducer, {
         location: null,
         user: null,
@@ -42,6 +51,15 @@ const AppProvider = ({ value = [], ...props}) => {
         loading: false,
     })
 
+useEffect(() => {
+        if(localStorage.getItem('user')){
+            dispatch({type:PENDING})
+            validateJWT().then(({data})=>{
+                dispatch({type: SET_USER, payload:data})
+            })
+    
+        }
+    }, [])
     return <Provider value={[state,dispatch]} {...props} />
 }
 
