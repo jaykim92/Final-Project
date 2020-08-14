@@ -140,7 +140,7 @@ export default function LoginForm() {
         variant="outlined"
         className={classes.input}
       />
-      <Button variant="contained" type="submit" color="primary">
+      <Button variant="contained" type="submit" style={{backgroundColor: '#193753', color: 'white'}}>
         Submit
       </Button>
     </form>

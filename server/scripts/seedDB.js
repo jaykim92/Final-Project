@@ -25,8 +25,8 @@ function getUsers() {
     password: faker.internet.password(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
-    lat: getLat(33.3, 33.75),
-    lng: getLong(-117.9, -117.5)
+    lat: getLat(33.55, 33.77),
+    lng: getLong(-117.88, -117.68)
   };
   return randomUser;
 }

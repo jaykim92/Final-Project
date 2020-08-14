@@ -83,7 +83,7 @@ export default function LoginForm() {
       />
       
    
-      <Button variant="contained" type="submit" color="primary">
+      <Button variant="contained" type="submit" style={{backgroundColor: '#193753', color: 'white'}}>
         Submit
       </Button>
     </form>
