@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 // import Map from './components/map';
 import SedMap from './components/SedMap/SedMap.js'
