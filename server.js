@@ -3,7 +3,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session")
 const logger = require("morgan");
-const passport = require('passport')
+const passport = require('passport');
+require('dotenv').config();
+
 // express setup
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -41,7 +43,7 @@ app.get('/api/get_user', authCheckMiddleware);
 app.use("/auth", passportRoute)
 app.use("/api", apiRoutes)
 // connection to MongoDB
-mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://jaykim92:HitoriSyu11!@@clusterj.x5wir.mongodb.net/users?retryWrites=true&w=majority");
+mongoose.connect(process.env.MONGODB_URI || process.env.DB_LINK);
 
 // Start the API server
 app.listen(PORT, function() {
