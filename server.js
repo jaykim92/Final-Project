@@ -43,7 +43,7 @@ app.get('/api/get_user', authCheckMiddleware);
 app.use("/auth", passportRoute)
 app.use("/api", apiRoutes)
 // connection to MongoDB
-mongoose.connect(process.env.MONGODB_URI || process.env.DB_LINK);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/users");
 
 // Start the API server
 app.listen(PORT, function() {
