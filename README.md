@@ -8,3 +8,17 @@ This web application provides population density information to users in an easi
 
 ## User Story
 As a member of the community, I want to be able to see which areas in my city are open for hangouts and which areas are potentially unsafe, so that I can decide which areas to avoid or choose to hangout safely.
+
+## Technologies Used
+MongoDB
+Express
+React
+Node
+Google Maps API
+Passport
+Material UI for CSS library
+Faker.js
+MongoDB Atlas
+
+## Deployed Application
+https://anti-social-social-app.herokuapp.com
